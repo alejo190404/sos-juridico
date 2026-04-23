@@ -24,8 +24,6 @@ export default function DetailPage({ section }) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  const backHash = SECTION_BACK[section] || ''
-
   useEffect(() => {
     if (!slug) return
     async function fetchNoticia() {
@@ -55,31 +53,25 @@ export default function DetailPage({ section }) {
       <StickyNav />
 
       {/* Hero banner */}
-      <div
-        className="relative flex items-end px-12 pb-12 overflow-hidden"
-        style={{
-          height: '55vh',
-          marginTop: 80,
-        }}
-      >
+      <div className="detail-hero">
         <img
           src={heroImage}
           alt={title}
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-sos-purple" style={{ opacity: 0.6 }} />
-        <div className="relative z-10 pt-20">
+        <div className="relative z-10 pt-16">
           {(noticia?.tipo || section) && (
             <p className="font-montserrat font-bold uppercase text-white text-xs tracking-widest opacity-70 mb-2">
               {section?.toUpperCase()}{noticia?.tipo ? ` / ${noticia.tipo.toUpperCase()}` : ''}
             </p>
           )}
           {loading ? (
-            <div className="skeleton rounded h-10 w-96" />
+            <div className="skeleton rounded h-10 w-64" />
           ) : (
             <h1
               className="font-montserrat font-black uppercase text-white leading-tight"
-              style={{ fontSize: 'clamp(28px, 4vw, 52px)' }}
+              style={{ fontSize: 'clamp(22px, 4vw, 52px)' }}
             >
               {title}
             </h1>
@@ -91,9 +83,8 @@ export default function DetailPage({ section }) {
       </div>
 
       {/* Content body + back button */}
-      <div style={{ background: 'var(--grey-0)', padding: '64px 48px 80px' }}>
+      <div className="detail-body">
         <div style={{ maxWidth: 768, margin: '0 auto' }}>
-          {/* Back button — top of content */}
           <Link
             to="/"
             style={{
@@ -103,14 +94,15 @@ export default function DetailPage({ section }) {
               background: 'transparent',
               color: 'var(--purple)',
               border: '1.5px solid var(--grey-2)',
-              padding: '9px 18px',
+              padding: '12px 20px',
               borderRadius: 6,
-              fontSize: '0.9rem',
+              fontSize: '0.95rem',
               fontWeight: 600,
               textDecoration: 'none',
               marginBottom: 40,
               transition: 'border-color 0.2s, color 0.2s',
               fontFamily: 'inherit',
+              minHeight: 44,
             }}
             onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--purple)'; e.currentTarget.style.background = 'var(--purple-dim)' }}
             onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--grey-2)'; e.currentTarget.style.background = 'transparent' }}
@@ -135,7 +127,7 @@ export default function DetailPage({ section }) {
           {!loading && !error && noticia && (
             <>
               {noticia.entradilla && (
-                <p style={{ fontWeight: 700, fontSize: 18, lineHeight: 1.7, color: 'var(--grey-5)', marginBottom: 24 }}>
+                <p style={{ fontWeight: 700, fontSize: 'clamp(16px, 2vw, 18px)', lineHeight: 1.7, color: 'var(--grey-5)', marginBottom: 24 }}>
                   {noticia.entradilla}
                 </p>
               )}

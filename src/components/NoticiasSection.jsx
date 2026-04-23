@@ -18,12 +18,8 @@ function formatDate(dateStr) {
 function SkeletonCard({ wide }) {
   return (
     <div
-      style={{
-        gridColumn: wide ? 'span 2' : 'span 1',
-        background: 'var(--white)',
-        borderRadius: 12,
-        overflow: 'hidden',
-      }}
+      className={wide ? 'news-first-card' : ''}
+      style={{ background: 'var(--white)', borderRadius: 12, overflow: 'hidden' }}
     >
       <div className="skeleton" style={{ width: '100%', aspectRatio: wide ? '21/9' : '16/9' }} />
       <div style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -63,12 +59,8 @@ export default function NoticiasSection() {
   return (
     <section
       id="noticias"
-      style={{
-        padding: '100px 48px',
-        background: 'var(--grey-1)',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
+      className="section-pad"
+      style={{ background: 'var(--grey-1)', position: 'relative', overflow: 'hidden' }}
     >
       {/* Geometric decorators */}
       <div style={{ position: 'absolute', top: -80, left: -80, width: 320, height: 320, background: 'var(--grey-2)', transform: 'rotate(15deg)', borderRadius: 8, opacity: 0.5, pointerEvents: 'none' }} />
@@ -89,9 +81,8 @@ export default function NoticiasSection() {
         </div>
       </div>
 
-      {/* Content */}
       {loading && (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, position: 'relative', zIndex: 1 }}>
+        <div className="grid-noticias">
           <SkeletonCard wide />
           <SkeletonCard />
           <SkeletonCard />
@@ -105,15 +96,7 @@ export default function NoticiasSection() {
       )}
 
       {!loading && !error && (
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: 24,
-            position: 'relative',
-            zIndex: 1,
-          }}
-        >
+        <div className="grid-noticias">
           {news.map((item, idx) => {
             const imgSrc = item.imagen_url ||
               CATEGORY_IMAGES[(item.category || '').toLowerCase()] ||
@@ -123,9 +106,9 @@ export default function NoticiasSection() {
             return (
               <div
                 key={item.title || item.id}
+                className={isFirst ? 'news-first-card' : ''}
                 onClick={() => navigate(`/noticias/${item.id}`)}
                 style={{
-                  gridColumn: isFirst ? 'span 2' : 'span 1',
                   background: 'var(--white)',
                   borderRadius: 12,
                   overflow: 'hidden',

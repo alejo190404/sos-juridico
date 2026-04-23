@@ -33,12 +33,8 @@ export default function CasosSection() {
   return (
     <section
       id="casos"
-      style={{
-        padding: '100px 48px',
-        background: 'var(--white)',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
+      className="section-pad"
+      style={{ background: 'var(--white)', position: 'relative', overflow: 'hidden' }}
     >
       {/* Geometric decorators */}
       <div style={{ position: 'absolute', top: -40, right: -40, width: 200, height: 200, background: 'var(--grey-2)', transform: 'rotate(12deg)', borderRadius: 8, opacity: 0.4, pointerEvents: 'none' }} />
@@ -57,19 +53,10 @@ export default function CasosSection() {
       </div>
 
       {/* Cards */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: 32,
-          position: 'relative',
-          zIndex: 1,
-        }}
-      >
+      <div className="grid-3">
         {cases.map((c) => (
           <div
             key={c.slug}
-            // onClick={() => navigate(`/casos/${c.slug}`)}
             style={{
               background: 'var(--grey-0)',
               borderRadius: 16,
@@ -85,23 +72,8 @@ export default function CasosSection() {
             onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-4px)' }}
             onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)' }}
           >
-            {/* Decorative rotated square */}
-            <div
-              style={{
-                position: 'absolute',
-                right: -30,
-                bottom: -30,
-                width: 120,
-                height: 120,
-                background: 'var(--grey-2)',
-                transform: 'rotate(12deg)',
-                borderRadius: 6,
-                transition: 'background 0.3s',
-                pointerEvents: 'none',
-              }}
-            />
+            <div style={{ position: 'absolute', right: -30, bottom: -30, width: 120, height: 120, background: 'var(--grey-2)', transform: 'rotate(12deg)', borderRadius: 6, pointerEvents: 'none' }} />
 
-            {/* Tag */}
             <span style={{
               display: 'inline-block',
               background: 'var(--purple)',
@@ -119,11 +91,8 @@ export default function CasosSection() {
             </span>
 
             <p style={{ fontSize: 12, color: 'var(--grey-4)', fontWeight: 500, position: 'relative' }}>{c.client}</p>
-
-            <h3 style={{ fontSize: 20, fontWeight: 700, lineHeight: 1.3, position: 'relative' }}>{c.headline}</h3>
-
+            <h3 style={{ fontSize: 'clamp(17px, 2vw, 20px)', fontWeight: 700, lineHeight: 1.3, position: 'relative' }}>{c.headline}</h3>
             <p style={{ fontSize: 14, color: 'var(--grey-4)', lineHeight: 1.6, position: 'relative' }}>{c.description}</p>
-
           </div>
         ))}
       </div>

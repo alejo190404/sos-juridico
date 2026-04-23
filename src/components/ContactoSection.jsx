@@ -31,12 +31,13 @@ const inputStyle = (hasError) => ({
   border: `1.5px solid ${hasError ? '#f87171' : 'var(--grey-2)'}`,
   borderRadius: 8,
   padding: '12px 14px',
-  fontSize: 14,
+  fontSize: 16,
   fontFamily: 'inherit',
   color: 'var(--black)',
   background: 'var(--grey-0)',
   outline: 'none',
   transition: 'border-color 0.2s',
+  minHeight: 44,
 })
 
 export default function ContactoSection() {
@@ -84,20 +85,7 @@ export default function ContactoSection() {
   }
 
   return (
-    <section
-      id="contacto"
-      style={{
-        height: '100vh',
-        padding: '80px 48px',
-        background: 'var(--grey-0)',
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: 80,
-        alignItems: 'center',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
+    <section id="contacto" className="contact-section">
       {/* Geometric decorator */}
       <div style={{ position: 'absolute', left: -100, top: -100, width: 300, height: 300, background: 'var(--grey-2)', transform: 'rotate(18deg)', borderRadius: 8, opacity: 0.4, pointerEvents: 'none' }} />
 
@@ -117,11 +105,11 @@ export default function ContactoSection() {
           {CONTACT_DETAILS.map((item) => (
             <div key={item.label} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
               <div style={{
-                width: 36, height: 36,
+                width: 44, height: 44,
                 background: 'var(--purple-dim)',
                 borderRadius: 6,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 16, flexShrink: 0,
+                fontSize: 18, flexShrink: 0,
               }}>
                 {item.icon}
               </div>
@@ -133,16 +121,15 @@ export default function ContactoSection() {
           ))}
         </div>
 
-        {/* Benefits */}
         <div style={{ marginTop: 32, display: 'flex', flexDirection: 'column', gap: 10 }}>
           {['Consulta inicial sin costo', 'Confidencialidad garantizada', 'Agenda instantánea'].map((item) => (
             <div key={item} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <div style={{
-                width: 24, height: 24,
+                width: 28, height: 28,
                 background: 'var(--purple)',
                 borderRadius: 4,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                color: 'white', fontSize: 12, fontWeight: 700, flexShrink: 0,
+                color: 'white', fontSize: 13, fontWeight: 700, flexShrink: 0,
               }}>✓</div>
               <span style={{ fontSize: 14, color: 'var(--grey-5)' }}>{item}</span>
             </div>
@@ -175,8 +162,7 @@ export default function ContactoSection() {
             <h3 style={{ fontSize: 22, fontWeight: 700 }}>Envía tu consulta</h3>
 
             <form ref={formRef} onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }} noValidate>
-              {/* Name row */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+              <div className="form-row">
                 <label style={{ display: 'flex', flexDirection: 'column', gap: 6, fontSize: 13, fontWeight: 600, color: 'var(--grey-5)' }}>
                   Nombre
                   <input name="name" type="text" placeholder="Tu nombre" value={fields.name} onChange={handleChange} style={inputStyle(errors.name)} onFocus={(e) => (e.target.style.borderColor = 'var(--purple)')} onBlur={(e) => (e.target.style.borderColor = errors.name ? '#f87171' : 'var(--grey-2)')} required />
@@ -220,7 +206,7 @@ export default function ContactoSection() {
                   border: 'none',
                   padding: 14,
                   borderRadius: 8,
-                  fontSize: 15,
+                  fontSize: 16,
                   fontWeight: 700,
                   cursor: sending ? 'not-allowed' : 'pointer',
                   fontFamily: 'inherit',
@@ -230,6 +216,7 @@ export default function ContactoSection() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   gap: 8,
+                  minHeight: 48,
                 }}
                 onMouseEnter={(e) => { if (!sending) e.currentTarget.style.background = 'var(--purple-light)' }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = 'var(--purple)' }}

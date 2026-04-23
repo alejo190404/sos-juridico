@@ -19,9 +19,9 @@ export default {
         'site-white': '#fefefe',
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-        jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
-        montserrat: ['"Plus Jakarta Sans"', 'sans-serif'],
+        sans: ['"Lora"', 'serif'],
+        jakarta: ['"Lora"', 'serif'],
+        montserrat: ['"Lora"', 'serif'],
       },
     },
   },

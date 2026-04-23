@@ -1,16 +1,25 @@
+import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import logo from '../assets/logo.png'
+
+const NAV_LINKS = [
+  { label: 'Servicios', id: 'casos' },
+  { label: 'Noticias', id: 'noticias' },
+  { label: 'Casos de éxito', id: 'casos' },
+  { label: 'Contacto', id: 'contacto' },
+]
 
 export default function StickyNav() {
   const location = useLocation()
   const navigate = useNavigate()
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const handleNavClick = (sectionId) => {
+    setMenuOpen(false)
     if (location.pathname === '/') {
       const el = document.getElementById(sectionId)
       if (el) el.scrollIntoView({ behavior: 'smooth' })
     } else {
-      // Navigate to home, then scroll after the page mounts
       navigate('/')
       setTimeout(() => {
         const el = document.getElementById(sectionId)
@@ -20,6 +29,7 @@ export default function StickyNav() {
   }
 
   const handleLogoClick = () => {
+    setMenuOpen(false)
     if (location.pathname === '/') {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     } else {
@@ -28,88 +38,50 @@ export default function StickyNav() {
   }
 
   return (
-    <nav
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 100,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '0 48px',
-        height: 80,
-        background: 'rgba(254,254,254,0.92)',
-        backdropFilter: 'blur(12px)',
-        borderBottom: '1px solid var(--grey-2)',
-      }}
-    >
-      {/* Logo — always goes to home */}
-      <button
-        onClick={handleLogoClick}
-        style={{
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          padding: 0,
-          display: 'flex',
-          alignItems: 'center',
-        }}
-      >
-        <img src={logo} alt="SOS Jurídico" style={{ height: 52, width: 'auto' }} />
-      </button>
+    <>
+      <nav className="sticky-nav">
+        <button onClick={handleLogoClick} className="nav-logo-btn" aria-label="Inicio">
+          <img src={logo} alt="SOS Jurídico" style={{ height: 52, width: 'auto' }} />
+        </button>
 
-      {/* Nav links */}
-      <ul style={{ display: 'flex', gap: 36, listStyle: 'none', margin: 0, padding: 0 }}>
-        {[
-          { label: 'Servicios', id: 'casos' },
-          { label: 'Noticias', id: 'noticias' },
-          { label: 'Casos de éxito', id: 'casos' },
-          { label: 'Contacto', id: 'contacto' },
-        ].map((link) => (
-          <li key={link.label}>
-            <button
-              onClick={() => handleNavClick(link.id)}
-              style={{
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                color: 'var(--grey-4)',
-                fontSize: 15,
-                fontWeight: 500,
-                fontFamily: 'inherit',
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--black)')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--grey-4)')}
-            >
+        <ul className="nav-links-desktop">
+          {NAV_LINKS.map((link) => (
+            <li key={link.label}>
+              <button onClick={() => handleNavClick(link.id)} className="nav-link-btn">
+                {link.label}
+              </button>
+            </li>
+          ))}
+        </ul>
+
+        <button onClick={() => handleNavClick('contacto')} className="nav-cta-btn nav-cta-desktop">
+          Consulta gratis →
+        </button>
+
+        <button
+          onClick={() => setMenuOpen((o) => !o)}
+          className={`hamburger-btn${menuOpen ? ' open' : ''}`}
+          aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+          aria-expanded={menuOpen}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+      </nav>
+
+      {menuOpen && (
+        <div className="mobile-menu" role="dialog" aria-label="Menú de navegación">
+          {NAV_LINKS.map((link) => (
+            <button key={link.label} onClick={() => handleNavClick(link.id)} className="mobile-nav-link">
               {link.label}
             </button>
-          </li>
-        ))}
-      </ul>
-
-      {/* CTA */}
-      <button
-        onClick={() => handleNavClick('contacto')}
-        style={{
-          background: 'var(--purple)',
-          color: 'white',
-          border: 'none',
-          padding: '12px 26px',
-          borderRadius: 6,
-          fontSize: 15,
-          fontWeight: 600,
-          cursor: 'pointer',
-          fontFamily: 'inherit',
-          transition: 'background 0.2s',
-        }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = 'var(--purple-light)')}
-        onMouseLeave={(e) => (e.currentTarget.style.background = 'var(--purple)')}
-      >
-        Consulta gratis →
-      </button>
-    </nav>
+          ))}
+          <button onClick={() => handleNavClick('contacto')} className="nav-cta-btn mobile-cta-btn">
+            Consulta gratis →
+          </button>
+        </div>
+      )}
+    </>
   )
 }
