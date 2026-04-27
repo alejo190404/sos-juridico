@@ -733,6 +733,10 @@
     right: 16px;
     pointer-events: auto;
   }
+  /* Hide FAB when chat is open — the header X button is enough */
+  .chatbot-fab--open {
+    display: none;
+  }
   .chatbot-window {
     position: fixed;
     inset: 0;
