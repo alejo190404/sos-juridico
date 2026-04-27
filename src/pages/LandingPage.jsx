@@ -6,6 +6,7 @@ import HeroSection from '../components/HeroSection.jsx'
 import NoticiasSection from '../components/NoticiasSection.jsx'
 import QuoteSection from '../components/QuoteSection.jsx'
 import StickyNav from '../components/StickyNav.jsx'
+import Chatbot from '../components/Chatbot.jsx'
 
 const SECTION_IDS = ['hero', 'casos', 'noticias', 'contacto', 'footer']
 
@@ -42,6 +43,7 @@ export default function LandingPage() {
       <QuoteSection />
       <ContactoSection />
       <FooterSection />
+      <Chatbot />
       {/* <NavDots activeSection={activeSection} /> */}
     </div>
   )
