@@ -12,9 +12,9 @@ const AREAS = [
 ]
 
 const CONTACT_DETAILS = [
-  { icon: '📞', label: 'Llámanos', value: '601 300 2555 / +57 310 280 4025' },
+  { icon: '📞', label: 'Llámanos', value: '601 300 2555 / +57 316 626 8583' },
   { icon: '📍', label: 'Dirección', value: 'Cra 13A # 28-38, Of. 257 · Bogotá D.C.' },
-  { icon: '✉️', label: 'Email', value: 'contactosjuridico@gmail.com' },
+  { icon: '✉️', label: 'Email', value: 'asuntoslegales@sosjuridico.com' },
 ]
 
 function validate(fields) {

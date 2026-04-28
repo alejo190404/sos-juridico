@@ -12,8 +12,8 @@ const NAV_LINKS = [
 ]
 
 const CONTACT_ITEMS = [
-  { icon: '📞', label: '601 300 2555 / +57 310 280 4025' },
-  { icon: '✉️', label: 'contactosjuridico@gmail.com' },
+  { icon: '📞', label: '601 300 2555 / +57 316 626 8583' },
+  { icon: '✉️', label: 'asuntoslegales@sosjuridico.com' },
   { icon: '📍', label: 'Cra 13A # 28-38, Of. 257 · Bogotá D.C.' },
 ]
 
@@ -75,26 +75,61 @@ export default function FooterSection() {
           </ul>
 
           <div style={{ display: 'flex', gap: 12 }}>
-            {[{ icon: '𝕏', label: 'Twitter' }, { icon: 'in', label: 'LinkedIn' }].map((s) => (
-              <div
+            {[
+              {
+                label: 'Instagram',
+                url: 'https://www.instagram.com/sosjuridicoabogados/?hl=es',
+                icon: (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                )
+              },
+              {
+                label: 'Facebook',
+                url: 'https://www.facebook.com/sos.juridico',
+                icon: (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                  </svg>
+                )
+              }
+            ].map((s) => (
+              <a
                 key={s.label}
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 title={s.label}
                 style={{
-                  width: 46, height: 46,
+                  width: 46,
+                  height: 46,
                   background: 'rgba(255,255,255,0.06)',
                   border: '1px solid rgba(255,255,255,0.12)',
                   borderRadius: 10,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                   color: 'rgba(255,255,255,0.6)',
-                  fontSize: 15, fontWeight: 700,
                   cursor: 'pointer',
-                  transition: 'background 0.2s',
+                  transition: 'all 0.2s ease',
+                  textDecoration: 'none'
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.12)')}
-                onMouseLeave={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.06)')}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.12)';
+                  e.currentTarget.style.color = '#fff';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
+                  e.currentTarget.style.color = 'rgba(255,255,255,0.6)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
               >
                 {s.icon}
-              </div>
+              </a>
             ))}
           </div>
         </div>
@@ -103,7 +138,7 @@ export default function FooterSection() {
       <div className="footer-bottom-bar">
         <p style={{ fontSize: 13 }}>© {new Date().getFullYear()} SOS Jurídico. Todos los derechos reservados.</p>
         <div className="footer-legal-links">
-          {['Política de privacidad', 'Términos de uso', 'Habeas Data'].map((item) => (
+          {['Política de privacidad'].map((item) => (
             <a key={item} href="#" style={{ color: 'rgba(255,255,255,0.4)', textDecoration: 'none', fontSize: 13, transition: 'color 0.2s' }}
               onMouseEnter={(e) => (e.currentTarget.style.color = 'white')}
               onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.4)')}
@@ -112,7 +147,7 @@ export default function FooterSection() {
             </a>
           ))}
         </div>
-        <p style={{ fontSize: 13 }}>www.sosjuridico.org</p>
+        <p style={{ fontSize: 13 }}>www.sosjuridico.com</p>
       </div>
     </footer>
   )

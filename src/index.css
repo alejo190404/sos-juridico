@@ -311,16 +311,24 @@
   padding-bottom: 32px;
 }
 .footer-bottom-bar {
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding: 20px 64px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; 
   align-items: center;
   position: relative;
   z-index: 1;
   flex-shrink: 0;
-  flex-wrap: wrap;
-  gap: 12px;
+  
+  flex-wrap: nowrap; 
+}
+.footer-bottom-bar > p, 
+.footer-bottom-bar > div {
+  flex: 1;          
+  display: flex;    
+  justify-content: center;
+  text-align: center;
+  margin: 0        
 }
 .footer-legal-links {
   display: flex;

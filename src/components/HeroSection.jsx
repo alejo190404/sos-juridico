@@ -80,7 +80,7 @@ export default function HeroSection() {
         <div className="hero-stats">
           {[
             { num: '+2.400', label: 'casos resueltos' },
-            { num: '18 años', label: 'de experiencia' },
+            { num: '12 años', label: 'de experiencia' },
             { num: '97%', label: 'satisfacción' },
           ].map((stat) => (
             <div key={stat.label} style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
