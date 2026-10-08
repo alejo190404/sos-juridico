@@ -1,4 +1,4 @@
-import Logo from './Logo.jsx'
+import logo from '../assets/logo.png'
 
 const scrollTo = (id) => {
   const el = document.getElementById(id)
@@ -45,9 +45,9 @@ export default function FooterSection() {
     <footer id="footer" className="site-footer">
       <div className="wrap footer-main">
         <div>
-          <Logo full height={84} />
+          <img src={logo} alt="SOS Jurídico" className="footer-logo" />
           <p className="muted" style={{ maxWidth: '40ch' }}>
-            Tu aliado legal en la era digital.
+            Servicio Jurídico Oportuno y Seguro.<br />Tu aliado legal en la era digital.
           </p>
           <div className="socials">
             {SOCIALS.map((s) => (

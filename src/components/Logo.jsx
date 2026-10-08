@@ -18,22 +18,7 @@ function Contacts() {
   )
 }
 
-export default function Logo({ full = false, height = 30 }) {
-  if (full) {
-    return (
-      <div className="logo-full">
-        <svg viewBox="0 0 100 40" height={height} role="img" aria-label="SOS Jurídico">
-          <S />
-          <circle cx="50" cy="20" r="14" fill="none" stroke="var(--plum)" strokeWidth="3.5" />
-          <Contacts />
-          <text x="50" y="22.6" textAnchor="middle" fill="var(--spark)" fontFamily="Lora, Georgia, serif" fontStyle="italic" fontSize="6.6"
-            stroke="var(--board)" strokeWidth="2.4" paintOrder="stroke">Jurídico</text>
-          <S x={70} />
-        </svg>
-        <span className="logo-tagline">Servicio Jurídico Oportuno y Seguro</span>
-      </div>
-    )
-  }
+export default function Logo({ height = 30 }) {
   return (
     <span className="logo">
       <svg viewBox="0 0 100 40" height={height} aria-hidden="true">

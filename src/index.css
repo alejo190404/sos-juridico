@@ -142,8 +142,6 @@
 .brand svg { flex: none; }
 .logo { display: inline-flex; align-items: center; gap: 10px; }
 .logo em { font: italic 500 19px/1 var(--f-display); color: var(--bone); padding-top: 2px; }
-.logo-full { display: inline-grid; gap: var(--s3); justify-items: start; }
-.logo-tagline { font: 500 10.5px var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ash); }
 .nav-links { display: flex; gap: var(--s5); margin: 0 0 0 auto; padding: 0; list-style: none; }
 .nav-link {
   background: none; border: 0; cursor: pointer; color: var(--ash);
@@ -277,7 +275,7 @@
 /* Footer */
 .site-footer { border-top: 1px solid var(--trace); background: var(--board); position: relative; overflow: hidden; }
 .footer-main { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: var(--s7); padding-block: var(--s8) var(--s7); position: relative; z-index: 1; }
-.site-footer .logo-full { margin-bottom: var(--s5); }
+.footer-logo { height: 72px; width: auto; filter: brightness(0) invert(.88); margin-bottom: var(--s5); }
 .footer-main h4 { font: 500 12px var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ash); margin: 0 0 var(--s4); }
 .footer-main ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
 .footer-link { background: none; border: 0; padding: 6px 0; cursor: pointer; color: var(--bone); font: 400 15px var(--f-body); text-decoration: none; text-align: left; }
