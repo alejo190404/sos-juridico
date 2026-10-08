@@ -38,3 +38,7 @@ Thumbs.db
 
 # Claude Code local settings
 .claude/settings.local.json
+
+# Local design system reference (not shipped)
+SOS Circuito.html
+.claude/launch.json

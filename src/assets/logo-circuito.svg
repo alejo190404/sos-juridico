@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50" width="800" height="400">
+  <title>SOS Jurídico — Servicio Jurídico Oportuno y Seguro</title>
+  <rect width="100" height="50" fill="#0A090B"/>
+  <g transform="translate(0 2)">
+    <g id="s" fill="#E2E0DC">
+      <path d="M24 7H9L5 11V15L9 19H23L27 23V29L23 33H8" fill="none" stroke="#E2E0DC" stroke-width="3.5"/>
+      <rect x="24" y="4.5" width="5" height="5"/><rect x="3" y="30.5" width="5" height="5"/>
+    </g>
+    <use href="#s" x="70"/>
+    <circle cx="50" cy="20" r="14" fill="none" stroke="#7E397E" stroke-width="3.5"/>
+    <g fill="#C77DC7"><circle cx="50" cy="6" r="1.6"/><circle cx="64" cy="20" r="1.6"/><circle cx="50" cy="34" r="1.6"/><circle cx="36" cy="20" r="1.6"/></g>
+    <text x="50" y="22.6" text-anchor="middle" fill="#F3E8F3" font-family="Lora, Georgia, serif" font-style="italic" font-size="6.4" stroke="#0A090B" stroke-width="2.4" paint-order="stroke">Jurídico</text>
+  </g>
+  <text x="50" y="46" text-anchor="middle" fill="#888480" font-family="IBM Plex Mono, ui-monospace, monospace" font-weight="500" font-size="3.4" letter-spacing=".5">SERVICIO JURÍDICO OPORTUNO Y SEGURO</text>
+</svg>

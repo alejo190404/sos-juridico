@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import logo from '../assets/logo.png'
+import Logo from './Logo.jsx'
 
 const NAV_LINKS = [
   { label: 'Servicios', id: 'casos' },
@@ -39,36 +39,38 @@ export default function StickyNav() {
 
   return (
     <>
-      <nav className="sticky-nav">
-        <button onClick={handleLogoClick} className="nav-logo-btn" aria-label="Inicio">
-          <img src={logo} alt="SOS Jurídico" style={{ height: 52, width: 'auto' }} />
-        </button>
+      <header className="topbar">
+        <nav className="wrap" aria-label="Principal">
+          <button onClick={handleLogoClick} className="brand" aria-label="SOS Jurídico, inicio">
+            <Logo />
+          </button>
 
-        <ul className="nav-links-desktop">
-          {NAV_LINKS.map((link) => (
-            <li key={link.label}>
-              <button onClick={() => handleNavClick(link.id)} className="nav-link-btn">
-                {link.label}
-              </button>
-            </li>
-          ))}
-        </ul>
+          <ul className="nav-links">
+            {NAV_LINKS.map((link) => (
+              <li key={link.label}>
+                <button onClick={() => handleNavClick(link.id)} className="nav-link">
+                  {link.label}
+                </button>
+              </li>
+            ))}
+          </ul>
 
-        <button onClick={() => handleNavClick('contacto')} className="nav-cta-btn nav-cta-desktop">
-          Consulta gratis →
-        </button>
+          <button onClick={() => handleNavClick('contacto')} className="btn nav-cta">
+            Consulta gratis <span className="arr">→</span>
+          </button>
 
-        <button
-          onClick={() => setMenuOpen((o) => !o)}
-          className={`hamburger-btn${menuOpen ? ' open' : ''}`}
-          aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
-          aria-expanded={menuOpen}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
-      </nav>
+          <button
+            onClick={() => setMenuOpen((o) => !o)}
+            className={`hamburger-btn${menuOpen ? ' open' : ''}`}
+            aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+            aria-expanded={menuOpen}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </nav>
+      </header>
 
       {menuOpen && (
         <div className="mobile-menu" role="dialog" aria-label="Menú de navegación">
@@ -77,8 +79,8 @@ export default function StickyNav() {
               {link.label}
             </button>
           ))}
-          <button onClick={() => handleNavClick('contacto')} className="nav-cta-btn mobile-cta-btn">
-            Consulta gratis →
+          <button onClick={() => handleNavClick('contacto')} className="btn">
+            Consulta gratis <span className="arr">→</span>
           </button>
         </div>
       )}

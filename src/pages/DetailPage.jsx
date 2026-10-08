@@ -49,69 +49,38 @@ export default function DetailPage({ section }) {
   const date = formatDate(noticia?.created_at)
 
   return (
-    <div className="min-h-screen bg-white font-montserrat">
+    <>
       <StickyNav />
 
       {/* Hero banner */}
-      <div className="detail-hero">
-        <img
-          src={heroImage}
-          alt={title}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-sos-purple" style={{ opacity: 0.6 }} />
-        <div className="relative z-10 pt-16">
+      <header className="detail-hero">
+        <img src={heroImage} alt="" />
+        <div className="wrap">
           {(noticia?.tipo || section) && (
-            <p className="font-montserrat font-bold uppercase text-white text-xs tracking-widest opacity-70 mb-2">
+            <p className="eyebrow">
               {section?.toUpperCase()}{noticia?.tipo ? ` / ${noticia.tipo.toUpperCase()}` : ''}
             </p>
           )}
           {loading ? (
-            <div className="skeleton rounded h-10 w-64" />
+            <div className="skeleton" style={{ height: 44, width: 'min(420px, 80%)', margin: 'var(--s3) 0' }} />
           ) : (
-            <h1
-              className="font-montserrat font-black uppercase text-white leading-tight"
-              style={{ fontSize: 'clamp(22px, 4vw, 52px)' }}
-            >
-              {title}
-            </h1>
+            <h1>{title}</h1>
           )}
-          {date && (
-            <p className="font-montserrat text-white text-xs mt-2 opacity-80">{date}</p>
-          )}
+          {date && <p className="mono muted" style={{ fontSize: 12, letterSpacing: '.06em' }}>{date}</p>}
         </div>
-      </div>
+      </header>
 
       {/* Content body + back button */}
-      <div className="detail-body">
-        <div style={{ maxWidth: 768, margin: '0 auto' }}>
-          <Link
-            to="/"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 8,
-              background: 'transparent',
-              color: 'var(--purple)',
-              border: '1.5px solid var(--grey-2)',
-              padding: '12px 20px',
-              borderRadius: 6,
-              fontSize: '0.95rem',
-              fontWeight: 600,
-              textDecoration: 'none',
-              marginBottom: 40,
-              transition: 'border-color 0.2s, color 0.2s',
-              fontFamily: 'inherit',
-              minHeight: 44,
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--purple)'; e.currentTarget.style.background = 'var(--purple-dim)' }}
-            onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--grey-2)'; e.currentTarget.style.background = 'transparent' }}
-          >
-            ← Volver
-          </Link>
+      <main className="detail-body">
+        <div className="wrap">
+          <div style={{ paddingLeft: 22 }}>
+            <Link to="/" className="btn ghost">
+              <span className="arr">←</span> Volver
+            </Link>
+          </div>
 
           {loading && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 'var(--s6)' }}>
               <div className="skeleton" style={{ height: 20, width: '100%' }} />
               <div className="skeleton" style={{ height: 20, width: '83%' }} />
               <div className="skeleton" style={{ height: 20, width: '80%' }} />
@@ -119,29 +88,17 @@ export default function DetailPage({ section }) {
               <div className="skeleton" style={{ height: 20, width: '75%' }} />
             </div>
           )}
-          {error && (
-            <p style={{ color: 'var(--grey-4)', fontSize: 16, background: 'var(--white)', padding: 24, borderRadius: 8 }}>
-              {error}
-            </p>
-          )}
+          {error && <p className="panel muted" style={{ marginTop: 'var(--s6)' }}>{error}</p>}
           {!loading && !error && noticia && (
-            <>
-              {noticia.entradilla && (
-                <p style={{ fontWeight: 700, fontSize: 'clamp(16px, 2vw, 18px)', lineHeight: 1.7, color: 'var(--grey-5)', marginBottom: 24 }}>
-                  {noticia.entradilla}
-                </p>
-              )}
+            <article className="article-sheet">
+              {noticia.entradilla && <p className="lede">{noticia.entradilla}</p>}
               {noticia.cuerpo && (
-                <div
-                  style={{ fontSize: 16, lineHeight: 1.8, color: 'var(--grey-4)' }}
-                  className="prose max-w-none"
-                  dangerouslySetInnerHTML={{ __html: noticia.cuerpo }}
-                />
+                <div className="prose-body" dangerouslySetInnerHTML={{ __html: noticia.cuerpo }} />
               )}
-            </>
+            </article>
           )}
         </div>
-      </div>
-    </div>
+      </main>
+    </>
   )
 }

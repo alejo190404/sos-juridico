@@ -228,6 +228,16 @@ function FormattedText({ text }) {
   )
 }
 
+// Small node-ring + balanza mark used as the bot avatar.
+function BotMark({ size = 28 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 28 28" aria-hidden="true">
+      <circle cx="14" cy="14" r="12" fill="var(--board)" stroke="var(--plum)" strokeWidth="1.2" />
+      <path d="M14 8v12M9 10.5h10M10.5 10.5l-2 4.5h4zM17.5 10.5l-2 4.5h4zM11 20h6" fill="none" stroke="var(--spark)" strokeWidth="1.2" strokeLinejoin="round" strokeLinecap="round" />
+    </svg>
+  )
+}
+
 let msgIdCounter = 0
 function mkMsg(role, text, isOptions = false) {
   return { id: ++msgIdCounter, role, text, isOptions }
@@ -339,10 +349,10 @@ export default function Chatbot() {
         <div className={`chatbot-window${isClosing ? ' chatbot-window--closing' : ''}`}>
           {/* Header */}
           <div className="chatbot-header">
-            <div className="chatbot-avatar" aria-hidden="true">⚖️</div>
+            <div className="chatbot-avatar" aria-hidden="true"><BotMark size={34} /></div>
             <div className="chatbot-header-text">
               <span className="chatbot-name">S.O.S Jurídico</span>
-              <span className="chatbot-status">● En línea</span>
+              <span className="chatbot-status">En línea</span>
             </div>
             <button
               className="chatbot-close-btn"
@@ -361,7 +371,7 @@ export default function Chatbot() {
                 className={`chatbot-msg chatbot-msg--${msg.role}${msg.isOptions ? ' chatbot-msg--options' : ''}`}
               >
                 {msg.role === 'bot' && !msg.isOptions && (
-                  <div className="chatbot-msg-avatar" aria-hidden="true">⚖️</div>
+                  <div className="chatbot-msg-avatar" aria-hidden="true"><BotMark size={24} /></div>
                 )}
                 <div className="chatbot-msg-bubble">
                   <FormattedText text={msg.text} />
@@ -371,7 +381,7 @@ export default function Chatbot() {
 
             {isTyping && (
               <div className="chatbot-msg chatbot-msg--bot">
-                <div className="chatbot-msg-avatar" aria-hidden="true">⚖️</div>
+                <div className="chatbot-msg-avatar" aria-hidden="true"><BotMark size={24} /></div>
                 <div className="chatbot-typing-indicator" aria-label="Escribiendo…">
                   <span /><span /><span />
                 </div>
@@ -402,7 +412,7 @@ export default function Chatbot() {
               disabled={isTyping || !input.trim()}
               aria-label="Enviar mensaje"
             >
-              ➤
+              →
             </button>
           </div>
         </div>
@@ -416,7 +426,9 @@ export default function Chatbot() {
         aria-expanded={isOpen}
         aria-haspopup="dialog"
       >
-        <span className="chatbot-fab-icon chatbot-fab-icon--chat" aria-hidden="true">💬</span>
+        <span className="chatbot-fab-icon chatbot-fab-icon--chat" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M4 5h16v11H9l-5 4z" /><path d="M8 10h.01M12 10h.01M16 10h.01" strokeWidth="2.4" strokeLinecap="round" /></svg>
+        </span>
         <span className="chatbot-fab-icon chatbot-fab-icon--close" aria-hidden="true">✕</span>
       </button>
     </div>
