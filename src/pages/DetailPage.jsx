@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import StickyNav from '../components/StickyNav.jsx'
-import { supabase } from '../lib/supabase.js'
+import { Link, useParams } from '@tanstack/react-router'
+import StickyNav from '../components/sos/StickyNav.jsx'
+import { getNoticia } from '@/lib/sos.functions'
 
 const SECTION_BACK = {
   casos: '#casos',
@@ -19,7 +19,7 @@ function formatDate(dateStr) {
 }
 
 export default function DetailPage({ section }) {
-  const { slug } = useParams()
+  const { slug } = useParams({ strict: false })
   const [noticia, setNoticia] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -28,12 +28,8 @@ export default function DetailPage({ section }) {
     if (!slug) return
     async function fetchNoticia() {
       try {
-        const { data, error: err } = await supabase
-          .from('noticia')
-          .select('*')
-          .eq('id', slug)
-          .single()
-        if (err) throw err
+        const data = await getNoticia({ data: { id: slug } })
+        if (!data) throw new Error('Noticia no encontrada')
         setNoticia(data)
       } catch {
         setError('No se pudo cargar la noticia.')

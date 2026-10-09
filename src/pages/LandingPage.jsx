@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
-import CasosSection from '../components/CasosSection.jsx'
-import ContactoSection from '../components/ContactoSection.jsx'
-import FooterSection from '../components/FooterSection.jsx'
-import HeroSection from '../components/HeroSection.jsx'
-import NoticiasSection from '../components/NoticiasSection.jsx'
-import QuoteSection from '../components/QuoteSection.jsx'
-import StickyNav from '../components/StickyNav.jsx'
-import Chatbot from '../components/Chatbot.jsx'
+import CasosSection from '../components/sos/CasosSection.jsx'
+import ContactoSection from '../components/sos/ContactoSection.jsx'
+import FooterSection from '../components/sos/FooterSection.jsx'
+import HeroSection from '../components/sos/HeroSection.jsx'
+import NoticiasSection from '../components/sos/NoticiasSection.jsx'
+import QuoteSection from '../components/sos/QuoteSection.jsx'
+import StickyNav from '../components/sos/StickyNav.jsx'
+import Chatbot from '../components/sos/Chatbot.jsx'
 
 const SECTION_IDS = ['hero', 'casos', 'noticias', 'contacto', 'footer']
 
