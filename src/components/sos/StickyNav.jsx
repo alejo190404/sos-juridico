@@ -55,9 +55,9 @@ export default function StickyNav() {
             ))}
           </ul>
 
-          <button onClick={() => handleNavClick('contacto')} className="btn nav-cta">
-            Consulta gratis <span className="arr">→</span>
-          </button>
+          <a href="https://cloudapp.redelex.com/privateportal/home/login/8DED509E-FACF-4135-AEA6-80C1CCF62932" className="btn nav-cta">
+            Consulta tu proceso <span className="arr">→</span>
+          </a>
 
           <button
             onClick={() => setMenuOpen((o) => !o)}
@@ -79,9 +79,9 @@ export default function StickyNav() {
               {link.label}
             </button>
           ))}
-          <button onClick={() => handleNavClick('contacto')} className="btn">
-            Consulta gratis <span className="arr">→</span>
-          </button>
+          <a href="https://cloudapp.redelex.com/privateportal/home/login/8DED509E-FACF-4135-AEA6-80C1CCF62932" className="btn">
+            Consulta tu proceso <span className="arr">→</span>
+          </a>
         </div>
       )}
     </>
